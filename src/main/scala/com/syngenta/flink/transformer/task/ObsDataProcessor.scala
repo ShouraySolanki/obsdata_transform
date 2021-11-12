@@ -9,6 +9,8 @@ import org.apache.flink.streaming.api.scala._
 class ObsDataProcessor(config: ObsDataTransformerConfig, kafkaConnector: KafkaConnector) {
   def process(): Unit = {
     val env = StreamExecutionEnvironment.getExecutionEnvironment
+
+
     val obsTransformerFunction = new ObsTransformerFunction(config)
 
 
