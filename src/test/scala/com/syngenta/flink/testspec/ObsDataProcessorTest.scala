@@ -1,7 +1,7 @@
-/*
+
 package com.syngenta.flink.testspec
 
-import com.syngenta.flink.transformer.domain.ObsData
+import com.syngenta.flink.transformer.domain.{ContextItems, ObsData}
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.scala.DefaultScalaModule
 import com.fasterxml.jackson.module.scala.experimental.ScalaObjectMapper
@@ -17,7 +17,9 @@ import org.mockito.Mockito.when
 import org.mockito.MockitoSugar.mock
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
+import com.github.blemale.scaffeine.{Cache, Scaffeine}
 
+import scala.concurrent.duration._
 import java.io.ByteArrayOutputStream
 import java.util
 
@@ -42,9 +44,24 @@ class ObsDataProcessorTest extends AnyFlatSpec with Matchers {
     ObsDataSink.values.size() should be(2)
   }
   "Obs Data Processor" should "transform obs com.syngenta.flink.data " in {
+    val contextItems = ContextItems("SYN_SYSTEM", "PESSL")
+    val cache: Cache[String, List[ContextItems]] =
+      Scaffeine()
+        .recordStats()
+        .expireAfterWrite(1.hour)
+        .maximumSize(500)
+        .build[String, List[ContextItems]]()
+
+    cache.put("51728580-fac1-11eb-b1d2-df3668d7bed5", List(contextItems))
     val obsDataTransformerConfig = new ObsDataTransformerConfig(config)
-    val obsTransformer = new ObsTransformerFunction(obsDataTransformerConfig)
-    obsTransformer.transform(TestData.Data_1) should be(TestData.transformed_Data1)
+    val obsTransformer = new ObsTransformerFunction(obsDataTransformerConfig, cache)
+    val objectMapper = new ObjectMapper() with ScalaObjectMapper
+    objectMapper.registerModule(DefaultScalaModule)
+
+    val obsData1: ObsData = objectMapper.readValue[ObsData](TestData.Data_1)
+
+    obsTransformer.transform(obsData1, objectMapper) should be(TestData.transformed_Data1)
+
   }
 
 
@@ -87,4 +104,4 @@ class ObsDataSink extends SinkFunction[String] {
 object ObsDataSink {
   val values: util.List[String] = new util.ArrayList()
 }
-*/
+

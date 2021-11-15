@@ -15,7 +15,8 @@ class ObsDataTransformerConfig(val config: Config) extends Serializable {
   val kafkaConsumerBrokerServers: String = config.getString("kafka.consumer.broker-servers")
   val kafkaProducerZookeeperServers: String = config.getString("kafka.producer.zookeeper-servers")
   val kafkaConsumerZookeeperServers: String = config.getString("kafka.consumer.zookeeper-servers")
-
+  val expiredPeriod: Int = config.getInt("cache.expired.period")
+  val maxSize: Int = config.getInt("cache.keys.maxsize")
 
   def flinkKafkaConsumerProperties: Properties = {
 
@@ -23,6 +24,8 @@ class ObsDataTransformerConfig(val config: Config) extends Serializable {
     properties.setProperty("bootstrap.servers", kafkaConsumerBrokerServers)
     properties.setProperty("zookeeper.connect", kafkaConsumerZookeeperServers)
     properties.setProperty("group.id", "consumerGroup")
+    //properties.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest")
+
     properties
   }
 
