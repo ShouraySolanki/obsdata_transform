@@ -27,6 +27,7 @@
     <orderEntry type="library" name="sbt: com.google.code.findbugs:jsr305:1.3.9:jar" level="project" />
     <orderEntry type="library" name="sbt: com.google.code.gson:gson:2.8.8:jar" level="project" />
     <orderEntry type="library" name="sbt: com.google.errorprone:error_prone_annotations:2.5.1:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="sbt: com.google.guava:guava:16.0.1:jar" level="project" />
     <orderEntry type="library" name="sbt: com.thoughtworks.paranamer:paranamer:2.8:jar" level="project" />
     <orderEntry type="library" name="sbt: com.twitter:chill-java:0.7.6:jar" level="project" />
     <orderEntry type="library" name="sbt: com.twitter:chill_2.11:0.7.6:jar" level="project" />
@@ -37,7 +38,11 @@
     <orderEntry type="library" name="sbt: commons-collections:commons-collections:3.2.2:jar" level="project" />
     <orderEntry type="library" name="sbt: commons-io:commons-io:2.8.0:jar" level="project" />
     <orderEntry type="library" name="sbt: io.dropwizard.metrics:metrics-core:3.2.6:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="sbt: io.netty:netty:3.7.0.Final:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="sbt: jline:jline:0.9.94:jar" level="project" />
     <orderEntry type="library" name="sbt: joda-time:joda-time:2.10.1:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="sbt: junit:junit:4.13:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="sbt: log4j:log4j:1.2.16:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="sbt: net.bytebuddy:byte-buddy-agent:1.10.15:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="sbt: net.bytebuddy:byte-buddy:1.10.15:jar" level="project" />
     <orderEntry type="library" name="sbt: net.liftweb:lift-json_2.11:3.5.0:jar" level="project" />
@@ -45,6 +50,7 @@
     <orderEntry type="library" name="sbt: org.apache.commons:commons-lang3:3.11:jar" level="project" />
     <orderEntry type="library" name="sbt: org.apache.commons:commons-math3:3.5:jar" level="project" />
     <orderEntry type="library" name="sbt: org.apache.commons:commons-text:1.9:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="sbt: org.apache.curator:curator-test:2.12.0:jar" level="project" />
     <orderEntry type="library" name="sbt: org.apache.flink:flink-annotations:1.14.0:jar" level="project" />
     <orderEntry type="library" name="sbt: org.apache.flink:flink-clients_2.11:1.14.0:jar" level="project" />
     <orderEntry type="library" name="sbt: org.apache.flink:flink-connector-base:1.14.0:jar" level="project" />
@@ -61,6 +67,7 @@
     <orderEntry type="library" name="sbt: org.apache.flink:flink-rpc-akka-loader:1.14.0:jar" level="project" />
     <orderEntry type="library" name="sbt: org.apache.flink:flink-rpc-core:1.14.0:jar" level="project" />
     <orderEntry type="library" name="sbt: org.apache.flink:flink-runtime:1.14.0:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="sbt: org.apache.flink:flink-runtime:1.14.0:tests:jar" level="project" />
     <orderEntry type="library" name="sbt: org.apache.flink:flink-scala_2.11:1.14.0:jar" level="project" />
     <orderEntry type="library" name="sbt: org.apache.flink:flink-shaded-asm-7:7.1-14.0:jar" level="project" />
     <orderEntry type="library" name="sbt: org.apache.flink:flink-shaded-force-shading:14.0:jar" level="project" />
@@ -68,10 +75,19 @@
     <orderEntry type="library" name="sbt: org.apache.flink:flink-shaded-jackson:2.12.4-14.0:jar" level="project" />
     <orderEntry type="library" name="sbt: org.apache.flink:flink-shaded-netty:4.1.65.Final-14.0:jar" level="project" />
     <orderEntry type="library" name="sbt: org.apache.flink:flink-shaded-zookeeper-3:3.4.14-14.0:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="sbt: org.apache.flink:flink-statebackend-changelog:1.14.0:jar" level="project" />
     <orderEntry type="library" name="sbt: org.apache.flink:flink-streaming-java_2.11:1.14.0:jar" level="project" />
     <orderEntry type="library" name="sbt: org.apache.flink:flink-streaming-scala_2.11:1.14.0:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="sbt: org.apache.flink:flink-test-utils-junit:1.14.0:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="sbt: org.apache.flink:flink-test-utils_2.11:1.14.0:jar" level="project" />
     <orderEntry type="library" name="sbt: org.apache.kafka:kafka-clients:2.4.1:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="sbt: org.apache.logging.log4j:log4j-api:2.14.1:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="sbt: org.apache.logging.log4j:log4j-core:2.14.1:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="sbt: org.apache.logging.log4j:log4j-slf4j-impl:2.14.1:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="sbt: org.apache.zookeeper:zookeeper:3.4.8:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="sbt: org.apiguardian:apiguardian-api:1.1.0:jar" level="project" />
     <orderEntry type="library" name="sbt: org.checkerframework:checker-qual:3.10.0:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="sbt: org.hamcrest:hamcrest-core:1.3:jar" level="project" />
     <orderEntry type="library" name="sbt: org.javassist:javassist:3.24.0-GA:jar" level="project" />
     <orderEntry type="library" name="sbt: org.json4s:json4s-ast_2.11:4.0.3:jar" level="project" />
     <orderEntry type="library" name="sbt: org.json4s:json4s-core_2.11:4.0.3:jar" level="project" />
@@ -81,11 +97,19 @@
     <orderEntry type="library" name="sbt: org.json4s:json4s-native_2.11:4.0.2:jar" level="project" />
     <orderEntry type="library" name="sbt: org.json4s:json4s-scalap_2.11:4.0.3:jar" level="project" />
     <orderEntry type="library" name="sbt: org.json:json:20210307:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="sbt: org.junit.jupiter:junit-jupiter-api:5.7.2:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="sbt: org.junit.jupiter:junit-jupiter-engine:5.7.2:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="sbt: org.junit.jupiter:junit-jupiter-params:5.7.2:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="sbt: org.junit.jupiter:junit-jupiter:5.7.2:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="sbt: org.junit.platform:junit-platform-commons:1.7.2:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="sbt: org.junit.platform:junit-platform-engine:1.7.2:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="sbt: org.junit.vintage:junit-vintage-engine:5.7.2:jar" level="project" />
     <orderEntry type="library" name="sbt: org.lz4:lz4-java:1.8.0:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="sbt: org.mockito:mockito-core:3.6.0:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="sbt: org.mockito:mockito-scala_2.11:1.16.46:jar" level="project" />
     <orderEntry type="library" name="sbt: org.objenesis:objenesis:2.1:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="sbt: org.objenesis:objenesis:3.1:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="sbt: org.opentest4j:opentest4j:1.2.0:jar" level="project" />
     <orderEntry type="library" name="sbt: org.scala-lang.modules:scala-java8-compat_2.11:1.0.0:jar" level="project" />
     <orderEntry type="library" name="sbt: org.scala-lang.modules:scala-parser-combinators_2.11:1.0.4:jar" level="project" />
     <orderEntry type="library" name="sbt: org.scala-lang.modules:scala-xml_2.11:1.3.0:jar" level="project" />

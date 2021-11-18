@@ -15,11 +15,14 @@ class ObsDataProcessor(config: ObsDataTransformerConfig, kafkaConnector: KafkaCo
 
 
     val stream = env.addSource(kafkaConnector.kafkaConsumer(config.kafkaInputTopic))
-
+      .setParallelism(1).rebalance
       .process(obsTransformerFunction)
+      .setParallelism(1)
+
+      
 
 
-    stream.getSideOutput(config.transformedOutputTag).addSink(kafkaConnector.kafkaProducer(config.kafkaOutputTopic))
+    stream.getSideOutput(config.transformedOutputTag).addSink(kafkaConnector.kafkaProducer(config.kafkaOutputTopic)).setParallelism(1)
 
     env.execute()
 

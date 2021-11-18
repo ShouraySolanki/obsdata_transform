@@ -1,34 +1,41 @@
 
-package com.syngenta.flink.testspec
+package com.syngenta.flink.spec
 
-import com.syngenta.flink.transformer.domain.{ContextItems, ObsData}
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.scala.DefaultScalaModule
 import com.fasterxml.jackson.module.scala.experimental.ScalaObjectMapper
-import com.typesafe.config.{Config, ConfigFactory}
+import com.github.blemale.scaffeine.{Cache, Scaffeine}
 import com.syngenta.flink.data.TestData
+import com.syngenta.flink.st.{MetricsReporter, TestSpec}
+import com.syngenta.flink.transformer.domain.{ContextItems, ObsData}
 import com.syngenta.flink.transformer.functions.ObsTransformerFunction
 import com.syngenta.flink.transformer.task.{ObsDataProcessor, ObsDataTransformerConfig}
 import com.syngenta.flink.transformer.util.KafkaConnector
+import com.typesafe.config.{Config, ConfigFactory}
+import org.apache.flink.runtime.testutils.MiniClusterResourceConfiguration
 import org.apache.flink.streaming.api.functions.sink.SinkFunction
 import org.apache.flink.streaming.api.functions.source.SourceFunction
 import org.mockito.Mockito
-import org.mockito.Mockito.when
-import org.mockito.MockitoSugar.mock
-import org.scalatest.flatspec.AnyFlatSpec
-import org.scalatest.matchers.should.Matchers
-import com.github.blemale.scaffeine.{Cache, Scaffeine}
 
-import scala.concurrent.duration._
 import java.io.ByteArrayOutputStream
 import java.util
+import scala.concurrent.duration._
+import org.apache.flink.test.util.MiniClusterWithClientResource
 
-class ObsDataProcessorTest extends AnyFlatSpec with Matchers {
+class ObsDataProcessorTest extends TestSpec {
+
+  val flinkCluster = new MiniClusterWithClientResource(new MiniClusterResourceConfiguration.Builder()
+    .setConfiguration(testConfiguration())
+    .setNumberSlotsPerTaskManager(1)
+    .setNumberTaskManagers(1)
+    .build)
 
   val config: Config = ConfigFactory.load("obsconfig.conf")
   val baseConfiguration = new ObsDataTransformerConfig(config)
 
   val mockKafkaConnector: KafkaConnector = mock[KafkaConnector](Mockito.withSettings().serializable())
+
+  MetricsReporter.gaugeMetrics.clear()
 
 
   when(mockKafkaConnector.kafkaConsumer(baseConfiguration.kafkaInputTopic)) thenReturn (new FlinkEventSource)
@@ -64,6 +71,11 @@ class ObsDataProcessorTest extends AnyFlatSpec with Matchers {
 
   }
 
+
+  "Obs Data Processor" should "process the events" in  {
+
+    MetricsReporter.gaugeMetrics(s"{baseConfiguration.ObsDataTransformationJob}.{baseConfiguration.transformedEventMetricCount}").getValue() should be(2)
+  }
 
 }
 

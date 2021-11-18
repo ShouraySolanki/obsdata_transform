@@ -27,6 +27,8 @@ libraryDependencies += "org.json" % "json" % "20210307"
 libraryDependencies += "org.apache.commons" % "commons-text" % "1.9"
 libraryDependencies += "org.apache.flink" % "flink-metrics-dropwizard" % "1.14.0"
 libraryDependencies += "com.github.blemale" %% "scaffeine" % "4.1.0"
+libraryDependencies += "org.apache.flink" %% "flink-test-utils" % "1.14.0" % Test
+
 
 
  assemblyMergeStrategy in assembly := {
