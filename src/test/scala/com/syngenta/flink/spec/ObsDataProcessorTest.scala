@@ -74,7 +74,7 @@ class ObsDataProcessorTest extends TestSpec {
 
   "Obs Data Processor" should "process the events" in  {
 
-    MetricsReporter.gaugeMetrics(s"{baseConfiguration.ObsDataTransformationJob}.{baseConfiguration.transformedEventMetricCount}").getValue() should be(2)
+    MetricsReporter.gaugeMetrics(s"{baseConfiguration.jobName}.{baseConfiguration.transformedEventMetricCount}").getValue() should be(2)
   }
 
 }
